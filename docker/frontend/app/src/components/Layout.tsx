@@ -95,9 +95,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <User size={20} />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="font-medium truncate">{user?.name || 'Usuario'}</p>
-              <p className="text-xs text-gray-500">{user?.carne || 'Carné'}</p>
-              <p className="text-xs text-gray-500 truncate">{user?.program || 'Programa'}</p>
+              <p className="font-medium truncate">{user?.name || "Usuario"}</p>
+              <p className="text-xs text-gray-500">{user?.carne || "Carné"}</p>
+              <p className="text-xs text-gray-500 truncate">
+                {user?.program?.name ?? "Programa"}
+              </p>
             </div>
           </div>
           <button

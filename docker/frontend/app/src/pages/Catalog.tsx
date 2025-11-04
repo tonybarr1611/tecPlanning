@@ -1,131 +1,125 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import FilterBar from "../components/FilterBar";
 import CourseCard from "../components/CourseCard";
-// Courses available next semester (mirrors Schedule "nextSemesterCourses")
-const coursesData = [
-  {
-    code: "IC6200",
-    name: "Inteligencia artificial",
-    credits: 4,
-    schedule: "Lunes-Miércoles 09:30-09:50 | Martes-Jueves 10:30-11:50",
-    professor: "Steven Pacheco Portuguez",
-    description:
-      "Fundamentos y técnicas de IA: búsqueda, representación del conocimiento y aprendizaje básico.",
-    difficulty: "Intermedio" as const,
-    rating: 4.4,
-    capacity: { current: 22, total: 30 },
-    type: "obligatorio" as const,
-  },
-  {
-    code: "IC7602",
-    name: "Redes",
-    credits: 4,
-    schedule: "Lunes-Miércoles 13:00-14:50 | Martes-Jueves 15:00-16:50",
-    professor: "Gerardo Nereo Campos Araya",
-    description:
-      "Arquitecturas, protocolos y herramientas para el diseño y administración de redes de datos.",
-    difficulty: "Intermedio" as const,
-    rating: 4.1,
-    capacity: { current: 28, total: 35 },
-    type: "obligatorio" as const,
-  },
-  {
-    code: "IC7841",
-    name: "Proyecto de ingeniería de software",
-    credits: 4,
-    schedule: "Miércoles-Viernes 10:30-11:50",
-    professor: "Dra. Alicia Salazar Hernandez",
-    description:
-      "Desarrollo de un proyecto integrador aplicando prácticas modernas de ingeniería de software.",
-    difficulty: "Difícil" as const,
-    rating: 4.3,
-    capacity: { current: 18, total: 25 },
-    type: "obligatorio" as const,
-  },
-  {
-    code: "AE4208",
-    name: "Desarrollo de emprendedores",
-    credits: 3,
-    schedule: "Jueves 13:00-16:50 | Viernes 09:30-11:50",
-    professor: "Ronald Leandro Elizondo",
-    description:
-      "Herramientas para ideación, validación y gestión de iniciativas emprendedoras.",
-    difficulty: "Fácil" as const,
-    rating: 4.6,
-    capacity: { current: 20, total: 30 },
-    type: "obligatorio" as const,
-  },
-];
+import { useAuth } from "../hooks/useAuth";
+import { apiRequest } from "../lib/api";
+import { CourseStatus, CurriculumResponse } from "../shared/types";
+
+interface CatalogCourse {
+  code: string;
+  name: string;
+  credits: number;
+  hours: number;
+  requirements?: string;
+  corequisites?: string;
+  status: CourseStatus;
+}
+
+const statusLabels: Record<CourseStatus, string> = {
+  "not-coursed": "Disponible",
+  "in-progress": "En curso",
+  approved: "Aprobado",
+  failed: "Reprobado",
+};
+
 const Catalog: React.FC = () => {
+  const { token } = useAuth();
+  const [courses, setCourses] = useState<CatalogCourse[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [departmentFilter, setDepartmentFilter] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
-  const [semesterFilter, setSemesterFilter] = useState("");
-  // Departments filter options
-  const departments = ["Computación", "Matemática", "Física", "Humanidades"];
-  // Course types filter options
-  const courseTypes = ["Obligatorio", "Electivo", "Cultural", "Deportivo"];
-  // Semester filter options
-  const semesters = ["I-2025", "II-2025", "Verano 2025"];
-  // Filter courses based on search and filters
-  const filteredCourses = coursesData.filter((course) => {
-    return (
-      course.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.code.toLowerCase().includes(searchQuery.toLowerCase())
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    setIsLoading(true);
+    setError(null);
+    apiRequest<CurriculumResponse>("/users/me/curriculum", { token })
+      .then((response) => {
+        const flattened: CatalogCourse[] = response.blocks.flatMap((block) =>
+          block.courses.map((course) => ({
+            code: course.code,
+            name: course.name,
+            credits: course.credits,
+            hours: course.hours,
+            requirements: course.requirements,
+            corequisites: course.corequisites,
+            status: course.status,
+          })),
+        );
+        setCourses(flattened);
+      })
+      .catch((err) => {
+        console.error("Failed to load catalog", err);
+        setError("No fue posible cargar el catálogo de cursos.");
+      })
+      .finally(() => setIsLoading(false));
+  }, [token]);
+
+  const filteredCourses = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) {
+      return courses;
+    }
+    return courses.filter((course) =>
+      course.name.toLowerCase().includes(query) ||
+      course.code.toLowerCase().includes(query),
     );
-  });
+  }, [courses, searchQuery]);
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-6">
         <h1 className="text-2xl font-bold mb-1">Catálogo de Cursos</h1>
         <p className="text-gray-600">
-          Explora los cursos disponibles y planifica tu próximo semestre
+          Explora los cursos disponibles según tu plan académico
         </p>
       </div>
-      <FilterBar
-        onSearch={setSearchQuery}
-        searchPlaceholder="Buscar cursos..."
-        filters={[
-          {
-            label: "Todos los departamentos",
-            options: departments,
-            value: departmentFilter,
-            onChange: setDepartmentFilter,
-          },
-          {
-            label: "Todos los tipos",
-            options: courseTypes,
-            value: typeFilter,
-            onChange: setTypeFilter,
-          },
-          {
-            label: "Todos los semestres",
-            options: semesters,
-            value: semesterFilter,
-            onChange: setSemesterFilter,
-          },
-        ]}
-      />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredCourses.map((course) => (
-          <CourseCard
-            key={course.code}
-            code={course.code}
-            name={course.name}
-            credits={course.credits}
-            schedule={course.schedule}
-            professor={course.professor}
-            description={course.description}
-            difficulty={course.difficulty}
-            rating={course.rating}
-            capacity={course.capacity}
-            type={course.type}
-            onAddToPlan={() => alert(`Curso ${course.code} agregado al plan`)}
-            onViewDetails={() => alert(`Ver detalles de ${course.code}`)}
-          />
-        ))}
-      </div>
+      <FilterBar onSearch={setSearchQuery} searchPlaceholder="Buscar cursos..." />
+      {isLoading && (
+        <div className="bg-white border border-gray-200 rounded-lg p-6 text-center text-sm text-gray-500">
+          Cargando cursos...
+        </div>
+      )}
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
+      {!isLoading && !error && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredCourses.map((course) => {
+            const descriptionParts = [
+              `Estado: ${statusLabels[course.status]}`,
+              `Requisitos: ${course.requirements || "No hay"}`,
+              `Correquisitos: ${course.corequisites || "No hay"}`,
+            ];
+            return (
+              <CourseCard
+                key={course.code}
+                code={course.code}
+                name={course.name}
+                credits={course.credits}
+                schedule="Por definir"
+                professor="Por asignar"
+                description={descriptionParts.join(" • ")}
+                type="obligatorio"
+                difficulty="Intermedio"
+                onAddToPlan={() => undefined}
+                onViewDetails={() => undefined}
+              />
+            );
+          })}
+          {filteredCourses.length === 0 && (
+            <div className="bg-white border border-gray-200 rounded-lg p-8 text-center text-gray-500 col-span-full">
+              No se encontraron cursos que coincidan con la búsqueda.
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
+
 export default Catalog;

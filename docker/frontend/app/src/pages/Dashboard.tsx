@@ -76,12 +76,11 @@ const UpcomingEvents: React.FC<{
     </div>
   </div>
 );
+
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
-  // State for modal visibility
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  // Show loading if user data is not available yet
   if (!user) {
     return (
       <div className="max-w-6xl mx-auto">
@@ -92,7 +91,7 @@ const Dashboard: React.FC = () => {
       </div>
     );
   }
-  // Mock data for current courses
+
   const currentCourses = [
     {
       code: "IC6400",
@@ -144,8 +143,12 @@ const Dashboard: React.FC = () => {
       location: "",
     },
   ];
-  // Mock data for upcoming events
-  const upcomingEvents: { date: string; name: string; type: "info" | "warning" | "danger" }[] = [
+
+  const upcomingEvents: {
+    date: string;
+    name: string;
+    type: "info" | "warning" | "danger";
+  }[] = [
     {
       date: "6 Oct",
       name: "Inscripción suficiencia",
@@ -172,11 +175,9 @@ const Dashboard: React.FC = () => {
     <div className="max-w-6xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
         <div>
-          <h1 className="text-2xl font-bold mb-1">
-            Bienvenido, {user.name}
-          </h1>
+          <h1 className="text-2xl font-bold mb-1">Bienvenido, {user.name}</h1>
           <p className="text-gray-600">
-            {user.program} • Carné: {user.carne}
+            {typeof user.program === "string" ? user.program : user.program?.name || "Programa"} • Carné: {user.carne}
           </p>
         </div>
         <Button
@@ -188,17 +189,19 @@ const Dashboard: React.FC = () => {
           Editar Perfil
         </Button>
       </div>
-      {/* Profile Edit Modal */}
+
       <ProfileEditModal
         isOpen={isEditModalOpen}
         onClose={() => setIsEditModalOpen(false)}
       />
+
       <ProgressStats
         progress={68}
         gpa={94.7}
         currentSemester={6}
         timeRemaining={1}
       />
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2">
           <CurrentCoursesList courses={currentCourses} />
@@ -210,4 +213,5 @@ const Dashboard: React.FC = () => {
     </div>
   );
 };
+
 export default Dashboard;

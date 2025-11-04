@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Anthony Barrantes",
+    "email": "anthony@tec.ac.cr",
+    "password": "demo123",
+    "program": "Ingeniería en Computación",
+    "carne": "2023152240"
+  },
+  {
+    "id": "2",
+    "name": "María González",
+    "email": "maria@tec.ac.cr",
+    "password": "demo123",
+    "program": "Ingeniería en Computación",
+    "carne": "2022134567"
+  },
+  {
+    "id": "3",
+    "name": "Carlos Rodríguez",
+    "email": "carlos@tec.ac.cr",
+    "password": "demo123",
+    "program": "Ingeniería en Computación",
+    "carne": "2021145678"
+  }
+]

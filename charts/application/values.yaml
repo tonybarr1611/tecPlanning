@@ -8,3 +8,18 @@ config:
     port: 80
     targetPort: 80
     nodePort: 30080
+  backend:
+    replicas: 1
+    name: backend
+    image: backend
+    servicePort: 5000
+    containerPort: 5000
+    env:
+      corsAllowedOrigins: "*"
+      jwtSecret: ""
+      database:
+        host: "database"
+        port: "5432"
+        name: "tecplanning"
+        user: "tecplanner"
+        password: "tecplanner-pass"

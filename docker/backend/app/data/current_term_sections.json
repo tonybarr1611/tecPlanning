@@ -1,0 +1,111 @@
+[
+  {
+    "code": "IC6400",
+    "professor": "Dr. Helo Guzman",
+    "location": "B3-7",
+    "sections": [
+      {
+        "day": "Miércoles",
+        "startTime": "17:00",
+        "endTime": "18:50"
+      },
+      {
+        "day": "Jueves",
+        "startTime": "17:00",
+        "endTime": "18:50"
+      }
+    ]
+  },
+  {
+    "code": "IC6600",
+    "professor": "Kenneth Obando Rodríguez",
+    "location": "B3-1",
+    "sections": [
+      {
+        "day": "Martes",
+        "startTime": "17:00",
+        "endTime": "18:50"
+      },
+      {
+        "day": "Viernes",
+        "startTime": "17:00",
+        "endTime": "18:50"
+      }
+    ]
+  },
+  {
+    "code": "IC7900",
+    "professor": "Dr. Jaime Solano Soto",
+    "location": "B3-8",
+    "sections": [
+      {
+        "day": "Miércoles",
+        "startTime": "09:30",
+        "endTime": "11:20"
+      },
+      {
+        "day": "Jueves",
+        "startTime": "09:30",
+        "endTime": "11:20"
+      }
+    ]
+  },
+  {
+    "code": "IC8071",
+    "professor": "Dr. Herson Esquivel Vargas",
+    "location": "B6-2",
+    "sections": [
+      {
+        "day": "Martes",
+        "startTime": "09:30",
+        "endTime": "11:20"
+      },
+      {
+        "day": "Viernes",
+        "startTime": "09:30",
+        "endTime": "11:20"
+      }
+    ]
+  },
+  {
+    "code": "IC8073",
+    "professor": "Dr. Yuen Law Wan",
+    "location": "",
+    "sections": [
+      {
+        "day": "Miércoles",
+        "startTime": "13:00",
+        "endTime": "14:50"
+      },
+      {
+        "day": "Jueves",
+        "startTime": "13:00",
+        "endTime": "14:50"
+      }
+    ]
+  },
+  {
+    "code": "SE1222",
+    "professor": "Johnny Alexander Artavia",
+    "location": "",
+    "sections": [
+      {
+        "day": "Viernes",
+        "startTime": "13:00",
+        "endTime": "14:50"
+      }
+    ]
+  },
+  {
+    "code": "CS4402",
+    "professor": "Katia Franceschi Sojo",
+    "location": "",
+    "sections": [
+      {
+        "day": "Martes",
+        "startTime": "13:00",
+        "endTime": "15:50"
+      }
+    ]
+  }
+]

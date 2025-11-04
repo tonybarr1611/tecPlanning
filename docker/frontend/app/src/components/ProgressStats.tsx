@@ -31,12 +31,14 @@ export const StatCard: React.FC<StatCardProps> = ({
     </div>
   );
 };
+
 interface ProgressStatsProps {
   progress: number;
   gpa: number;
   currentSemester: number;
   timeRemaining: number;
 }
+
 const ProgressStats: React.FC<ProgressStatsProps> = ({
   progress,
   gpa,
@@ -72,4 +74,5 @@ const ProgressStats: React.FC<ProgressStatsProps> = ({
     </div>
   );
 };
+
 export default ProgressStats;

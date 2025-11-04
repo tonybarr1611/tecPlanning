@@ -1,0 +1,60 @@
+[
+  {
+    "code": "IC6200",
+    "professor": "Steven Pacheco Portuguez",
+    "location": "B3-2",
+    "sections": [
+      {
+        "day": "Lunes",
+        "startTime": "09:30",
+        "endTime": "09:50"
+      },
+      {
+        "day": "Miércoles",
+        "startTime": "09:30",
+        "endTime": "09:50"
+      }
+    ]
+  },
+  {
+    "code": "IC7602",
+    "professor": "Gerardo Nereo Campos Araya",
+    "location": "B3-5",
+    "sections": [
+      {
+        "day": "Lunes",
+        "startTime": "13:00",
+        "endTime": "14:50"
+      },
+      {
+        "day": "Miércoles",
+        "startTime": "13:00",
+        "endTime": "14:50"
+      }
+    ]
+  },
+  {
+    "code": "IC5001",
+    "professor": "Equipo Académico",
+    "location": "",
+    "sections": [
+      {
+        "day": "Martes",
+        "startTime": "10:30",
+        "endTime": "11:50"
+      }
+    ]
+  },
+  {
+    "code": "AE4208",
+    "professor": "Unidad de Emprendimiento",
+    "location": "",
+    "sections": [
+      {
+        "day": "Jueves",
+        "startTime": "15:00",
+        "endTime": "16:50"
+      }
+    ]
+  }
+]

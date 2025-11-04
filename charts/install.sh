@@ -10,4 +10,5 @@ update_helm_charts() {
     helm upgrade --install "$chart" "$chart"
 }
 
+update_helm_charts "database"
 update_helm_charts "application"

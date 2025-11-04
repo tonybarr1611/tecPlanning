@@ -1,0 +1,495 @@
+{
+  "program": "Bachillerato en Ingeniería en Computación",
+  "code": "412",
+  "jornada": "Diurno",
+  "sedes": [
+    "Campus Tecnológico Central Cartago",
+    "Campus Tecnológico Local San José",
+    "Centro Académico de Alajuela",
+    "Centro Académico de Limón",
+    "Campus Tecnológico Local San Carlos"
+  ],
+  "grado_académico": "Bachillerato",
+  "última_actualización": "10 Octubre 2024",
+  "courses": [
+    {
+      "bloque": 0,
+      "courses": [
+        {
+          "codigo": "CI0200",
+          "nombre": "Examen Diagnóstico",
+          "creditos": 0,
+          "horas": 0,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        }
+      ]
+    },
+    {
+      "bloque": 1,
+      "courses": [
+        {
+          "codigo": "CI0202",
+          "nombre": "Inglés Básico",
+          "creditos": 2,
+          "horas": 3,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "MA0101",
+          "nombre": "Matemática General",
+          "creditos": 2,
+          "horas": 5,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "CI1106",
+          "nombre": "Comunicación Escrita",
+          "creditos": 2,
+          "horas": 6,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC1400",
+          "nombre": "Fundamentos De Organización De Computadoras",
+          "creditos": 3,
+          "horas": 9,
+          "requisitos": "No hay",
+          "correquisitos": "MA1403",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC1802",
+          "nombre": "Introducción A La Programación",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC1803",
+          "nombre": "Taller De Programación",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "MA1403",
+          "nombre": "Matemática Discreta",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "SE1100",
+          "nombre": "Actividad Cultural I",
+          "creditos": 0,
+          "horas": 2,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        }
+      ]
+    },
+    {
+      "bloque": 2,
+      "courses": [
+        {
+          "codigo": "CI1107",
+          "nombre": "Comunicación Oral 1",
+          "creditos": 1,
+          "horas": 3,
+          "requisitos": "CI1106",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "CI1230",
+          "nombre": "Inglés I",
+          "creditos": 2,
+          "horas": 6,
+          "requisitos": "CI0200, CI0202",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "MA1102",
+          "nombre": "Cálculo Diferencial E Integral",
+          "creditos": 4,
+          "horas": 5,
+          "requisitos": "MA0101, MA1403",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC2001",
+          "nombre": "Estructuras De Datos",
+          "creditos": 4,
+          "horas": 12,
+          "requisitos": "No hay",
+          "correquisitos": "IC2101",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC2101",
+          "nombre": "Programación Orientada A Objetos",
+          "creditos": 3,
+          "horas": 9,
+          "requisitos": "IC1802, IC1803",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC5700",
+          "nombre": "Cómputo Y Sociedad",
+          "creditos": 2,
+          "horas": 4,
+          "requisitos": "IC1802, IC1803",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC6601",
+          "nombre": "Organización Del Computador Digital",
+          "creditos": 4,
+          "horas": 8,
+          "requisitos": "IC1400, MA1403",
+          "correquisitos": "No hay",
+          "status": "approved"
+        }
+      ]
+    },
+    {
+      "bloque": 3,
+      "courses": [
+        {
+          "codigo": "CS1104",
+          "nombre": "Humanidades I",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "CI1231",
+          "nombre": "Inglés II",
+          "creditos": 2,
+          "horas": 6,
+          "requisitos": "CI1230",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "MA1404",
+          "nombre": "Ecuaciones Diferenciales",
+          "creditos": 2,
+          "horas": 4,
+          "requisitos": "MA1102",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC3600",
+          "nombre": "Bases De Datos I",
+          "creditos": 3,
+          "horas": 6,
+          "requisitos": "IC2001",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC4700",
+          "nombre": "Fundamentos De Ingeniería De Software",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "IC2001, IC2101",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC5701",
+          "nombre": "Teoría De Autómatas Y Lenguajes Formales",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "IC2001, MA1403",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC6201",
+          "nombre": "Probabilidad Y Estadística",
+          "creditos": 4,
+          "horas": 8,
+          "requisitos": "MA1102",
+          "correquisitos": "No hay",
+          "status": "approved"
+        }
+      ]
+    },
+    {
+      "bloque": 4,
+      "courses": [
+        {
+          "codigo": "CS1105",
+          "nombre": "Humanidades II",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "CS1104",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "FH1000",
+          "nombre": "Realidad Nacional",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "CS1104",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC3002",
+          "nombre": "Análisis Y Diseño De Algoritmos",
+          "creditos": 4,
+          "horas": 8,
+          "requisitos": "IC2001, IC6201, MA1403",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC3003",
+          "nombre": "Ingeniería De Software",
+          "creditos": 4,
+          "horas": 6,
+          "requisitos": "IC4700",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC4302",
+          "nombre": "Diseño Digital Moderno",
+          "creditos": 4,
+          "horas": 8,
+          "requisitos": "IC6601",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC5710",
+          "nombre": "Diseño De Lenguajes De Programación",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "IC2001, IC5701",
+          "correquisitos": "No hay",
+          "status": "approved"
+        }
+      ]
+    },
+    {
+      "bloque": 5,
+      "courses": [
+        {
+          "codigo": "CS3401",
+          "nombre": "Historia De La Cultura",
+          "creditos": 2,
+          "horas": 3,
+          "requisitos": "CS1104",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC3001",
+          "nombre": "Análisis Numérico Para Ingeniería",
+          "creditos": 3,
+          "horas": 6,
+          "requisitos": "IC6201, MA1102, MA1404",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC5221",
+          "nombre": "Modelos Discretos",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "IC6201",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC5702",
+          "nombre": "Compiladores E Intérpretes",
+          "creditos": 4,
+          "horas": 6,
+          "requisitos": "IC3003, IC5710",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC5800",
+          "nombre": "Diseño De Sistemas Digitales",
+          "creditos": 4,
+          "horas": 8,
+          "requisitos": "IC4302",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC6831",
+          "nombre": "Gestión De Proyectos De Tecnologías De Información",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "IC3003",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "SE1200",
+          "nombre": "Actividad Deportiva",
+          "creditos": 0,
+          "horas": 2,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        }
+      ]
+    },
+    {
+      "bloque": 6,
+      "courses": [
+        {
+          "codigo": "CS4402",
+          "nombre": "Seminario De Estudios Costarricenses",
+          "creditos": 2,
+          "horas": 3,
+          "requisitos": "CS3401",
+          "correquisitos": "No hay",
+          "status": "in-progress"
+        },
+        {
+          "codigo": "IC4003",
+          "nombre": "Electiva I",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "approved"
+        },
+        {
+          "codigo": "IC6400",
+          "nombre": "Investigación De Operaciones",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "MA3405",
+          "correquisitos": "No hay",
+          "status": "in-progress"
+        },
+        {
+          "codigo": "IC6600",
+          "nombre": "Principios De Sistemas Operativos",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "IC5701",
+          "correquisitos": "No hay",
+          "status": "in-progress"
+        },
+        {
+          "codigo": "IC7900",
+          "nombre": "Computación Y Sociedad",
+          "creditos": 2,
+          "horas": 7,
+          "requisitos": "IC4810",
+          "correquisitos": "CS4402",
+          "status": "in-progress"
+        },
+        {
+          "codigo": "IC8071",
+          "nombre": "Seguridad Del Software",
+          "creditos": 3,
+          "horas": 9,
+          "requisitos": "IC5701",
+          "correquisitos": "No hay",
+          "status": "in-progress"
+        }
+      ]
+    },
+    {
+      "bloque": 7,
+      "courses": [
+        {
+          "codigo": "AE4208",
+          "nombre": "Desarrollo De Emprendedores",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "IC7841",
+          "status": "not-coursed"
+        },
+        {
+          "codigo": "IC5001",
+          "nombre": "Electiva II",
+          "creditos": 3,
+          "horas": 4,
+          "requisitos": "No hay",
+          "correquisitos": "No hay",
+          "status": "in-progress"
+        },
+        {
+          "codigo": "IC6200",
+          "nombre": "Inteligencia Artificial",
+          "creditos": 4,
+          "horas": 4,
+          "requisitos": "IC5701, IC6400",
+          "correquisitos": "No hay",
+          "status": "not-coursed"
+        },
+        {
+          "codigo": "IC7602",
+          "nombre": "Redes",
+          "creditos": 4,
+          "horas": 12,
+          "requisitos": "IC6600",
+          "correquisitos": "No hay",
+          "status": "not-coursed"
+        },
+        {
+          "codigo": "IC7841",
+          "nombre": "Proyecto De Ingeniería De Software",
+          "creditos": 3,
+          "horas": 9,
+          "requisitos": "IC4302, IC6831",
+          "correquisitos": "No hay",
+          "status": "not-coursed"
+        }
+      ]
+    },
+    {
+      "bloque": 8,
+      "courses": [
+        {
+          "codigo": "IC8842",
+          "nombre": "Práctica Profesional",
+          "creditos": 12,
+          "horas": 40,
+          "requisitos": "AE4208, FH1000, IC4003, IC5001, IC6200, IC7602, IC7841, SE1100, SE1200, SE1400",
+          "correquisitos": "No hay",
+          "status": "not-coursed"
+        }
+      ]
+    }
+  ],
+  "total_credits": 136,
+  "number_of_semesters": 9
+}

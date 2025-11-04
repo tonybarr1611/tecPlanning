@@ -1,0 +1,11 @@
+config:
+  image: postgres:16.4-alpine
+  replicas: 1
+  serviceName: database
+  servicePort: 5432
+  containerPort: 5432
+  storageSize: 1Gi
+  credentials:
+    database: tecplanning
+    username: tecplanner
+    password: tecplanner-pass

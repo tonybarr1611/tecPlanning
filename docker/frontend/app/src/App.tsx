@@ -11,55 +11,73 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import LandingPage from "./pages/LandingPage";
 
+const LoadingScreen = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <p className="text-gray-600 text-sm">Cargando aplicación...</p>
+  </div>
+);
+
 const AppRoutes = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <Routes>
-      <Route 
-        path="/welcome" 
-        element={isAuthenticated ? <Navigate to="/" replace /> : <LandingPage />} 
+      <Route
+        path="/welcome"
+        element={isAuthenticated ? <Navigate to="/" replace /> : <LandingPage />}
       />
-      <Route 
-        path="/login" 
-        element={isAuthenticated ? <Navigate to="/" replace /> : <Login />} 
+      <Route
+        path="/login"
+        element={isAuthenticated ? <Navigate to="/" replace /> : <Login />}
       />
-      <Route 
-        path="/signup" 
-        element={isAuthenticated ? <Navigate to="/" replace /> : <Signup />} 
+      <Route
+        path="/signup"
+        element={isAuthenticated ? <Navigate to="/" replace /> : <Signup />}
       />
-      <Route path="/" element={
-        isAuthenticated ? (
+      <Route
+        path="/"
+        element={
           <ProtectedRoute>
             <Layout>
               <Dashboard />
             </Layout>
           </ProtectedRoute>
-        ) : (
-          <Navigate to="/welcome" replace />
-        )
-      } />
-      <Route path="/malla-curricular" element={
-        <ProtectedRoute>
-          <Layout>
-            <Curriculum />
-          </Layout>
-        </ProtectedRoute>
-      } />
-      <Route path="/horarios" element={
-        <ProtectedRoute>
-          <Layout>
-            <Schedule />
-          </Layout>
-        </ProtectedRoute>
-      } />
-      <Route path="/catalogo" element={
-        <ProtectedRoute>
-          <Layout>
-            <Catalog />
-          </Layout>
-        </ProtectedRoute>
-      } />
+        }
+      />
+      <Route
+        path="/malla-curricular"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Curriculum />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/horarios"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Schedule />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/catalogo"
+        element={
+          <ProtectedRoute>
+            <Layout>
+              <Catalog />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

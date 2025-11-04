@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.config.backend.name }}
+  labels:
+    app: {{ .Values.config.backend.name }}
+spec:
+  replicas: {{ .Values.config.backend.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.config.backend.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.config.backend.name }}
+    spec:
+      containers:
+        - name: {{ .Values.config.backend.name }}
+          image: {{ .Values.config.docker_registry }}/{{ .Values.config.backend.image }}
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.config.backend.containerPort }}
+          env:
+            - name: DB_HOST
+              value: {{ .Values.config.backend.env.database.host | quote }}
+            - name: DB_PORT
+              value: {{ .Values.config.backend.env.database.port | quote }}
+            - name: DB_NAME
+              value: {{ .Values.config.backend.env.database.name | quote }}
+            - name: DB_USER
+              value: {{ .Values.config.backend.env.database.user | quote }}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.backend.name }}-secret
+                  key: DB_PASSWORD
+            - name: JWT_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.config.backend.name }}-secret
+                  key: JWT_SECRET_KEY
+            - name: CORS_ALLOWED_ORIGINS
+              value: {{ .Values.config.backend.env.corsAllowedOrigins | quote }}
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.config.backend.containerPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: {{ .Values.config.backend.containerPort }}
+            initialDelaySeconds: 10
+            periodSeconds: 20

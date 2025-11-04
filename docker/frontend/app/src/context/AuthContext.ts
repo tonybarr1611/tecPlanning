@@ -3,11 +3,14 @@ import { User } from '../shared/types';
 
 export interface AuthContextType {
   user: User | null;
-  login: (email: string, password: string) => Promise<boolean>;
-  signup: (name: string, email: string, password: string, program: string, carne: string) => Promise<boolean>;
-  updateProfile: (name: string, program: string, carne: string) => Promise<boolean>;
-  logout: () => void;
+  token: string | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
+  login: (email: string, password: string) => Promise<boolean>;
+  signup: (name: string, email: string, password: string, programCode: string, carne: string) => Promise<boolean>;
+  updateProfile: (name: string, programCode: string, carne: string) => Promise<boolean>;
+  refreshUser: () => Promise<void>;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);

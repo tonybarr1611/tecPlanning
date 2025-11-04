@@ -22,13 +22,6 @@ export interface CourseSummary {
   type?: CourseKind;
 }
 
-export interface ProfileData {
-  name: string;
-  id: string;
-  program: string;
-  semester: number;
-}
-
 export type CourseStatus =
   | "not-coursed"
   | "in-progress"
@@ -60,6 +53,12 @@ export interface ScheduledCourse extends TimeSlot {
   location?: string;
 }
 
+export interface DashboardMeeting {
+  day: string;
+  startTime: string;
+  endTime: string;
+}
+
 export interface CourseGroup extends TimeSlot {
   id: number;
   name: string;
@@ -78,14 +77,96 @@ export interface NextCourse {
 }
 
 // Authentication types
+export interface UserProgramRef {
+  code: string | null;
+  name: string | null;
+}
+
 export interface User {
   id: string;
   name: string;
   email: string;
-  program: string;
+  program: UserProgramRef | null;
   carne: string;
 }
 
-export interface StoredUser extends User {
-  password: string;
+export interface DashboardProgress {
+  progress: number;
+  completedCredits: number;
+  totalCredits: number;
+  currentSemester: number;
+  remainingSemesters: number;
+}
+
+export interface DashboardCourse {
+  code: string;
+  name: string;
+  term: string;
+  section: string;
+  professor: string;
+  location?: string | null;
+  meetings: DashboardMeeting[];
+}
+
+export interface DashboardEvent {
+  id: number;
+  title: string;
+  description?: string | null;
+  date: string;
+  severity: "info" | "warning" | "danger";
+  programCode?: string | null;
+}
+
+export interface DashboardResponse {
+  user: User;
+  progress: DashboardProgress;
+  currentCourses: DashboardCourse[];
+  upcomingEvents: DashboardEvent[];
+}
+
+export interface CurriculumCourse {
+  code: string;
+  name: string;
+  credits: number;
+  hours: number;
+  requirements?: string;
+  corequisites?: string;
+  status: CourseStatus;
+}
+
+export interface CurriculumBlock {
+  blockNumber: number;
+  courses: CurriculumCourse[];
+}
+
+export interface ProgramDetails {
+  code: string;
+  name: string;
+  jornada?: string | null;
+  degree?: string | null;
+  sedes: string[];
+  lastUpdated?: string | null;
+  totalCredits: number;
+  numberOfSemesters: number;
+}
+
+export interface CurriculumResponse {
+  program: ProgramDetails;
+  progress: DashboardProgress;
+  blocks: CurriculumBlock[];
+}
+
+export interface ProgramSummary {
+  id: number;
+  code: string;
+  name: string;
+  jornada?: string | null;
+  degree?: string | null;
+  sedes?: string[];
+  lastUpdated?: string | null;
+  totalCredits?: number;
+  numberOfSemesters?: number;
+}
+
+export type ScheduleEntry = DashboardCourse;
 }

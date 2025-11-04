@@ -11,3 +11,4 @@ build_docker_image() {
 }
 
 build_docker_image "frontend" "$1"
+build_docker_image "backend" "$1"

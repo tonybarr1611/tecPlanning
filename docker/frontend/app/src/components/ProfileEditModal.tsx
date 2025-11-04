@@ -1,118 +1,116 @@
-import React, { useState } from "react";
-import { User, BookOpen, Hash, AlertCircle, CheckCircle } from 'lucide-react';
+import React, { useEffect, useState } from "react";
+import { User as UserIcon, BookOpen, Hash, AlertCircle, CheckCircle } from "lucide-react";
 import Button from "./ui/Button";
 import { Modal } from "./ui/Modal";
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from "../hooks/useAuth";
+import { usePrograms } from "../hooks/usePrograms";
 
 interface ProfileEditModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
-  isOpen,
-  onClose
-}) => {
+const ProfileEditModal: React.FC<ProfileEditModalProps> = ({ isOpen, onClose }) => {
   const { user, updateProfile } = useAuth();
+  const { programs, isLoading: isLoadingPrograms, error: programsError } = usePrograms();
+
   const [formData, setFormData] = useState({
-    name: user?.name || '',
-    program: user?.program || '',
-    carne: user?.carne || ''
+    name: "",
+    programCode: "",
+    carne: "",
   });
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const programs = [
-    'Ingeniería en Computación',
-    'Ingeniería en Sistemas',
-    'Ingeniería Industrial',
-    'Ingeniería Civil',
-    'Ingeniería Mecánica',
-    'Ingeniería Eléctrica',
-    'Arquitectura',
-    'Administración de Empresas',
-    'Contaduría Pública',
-    'Psicología'
-  ];
+  useEffect(() => {
+    if (!isOpen) {
+      return;
+    }
+    setFormData({
+      name: user?.name ?? "",
+      programCode: user?.program?.code ?? "",
+      carne: user?.carne ?? "",
+    });
+    setError("");
+    setSuccess("");
+  }, [isOpen, user]);
 
-  if (!isOpen) return null;
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
-    // Clear messages when user starts typing
-    if (error) setError('');
-    if (success) setSuccess('');
+    if (error) setError("");
+    if (success) setSuccess("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
-    // Validation
     if (!formData.name.trim()) {
-      setError('El nombre es requerido.');
+      setError("El nombre es requerido.");
       return;
     }
 
-    if (!formData.program) {
-      setError('Por favor selecciona tu programa académico.');
+    if (!formData.programCode) {
+      setError("Por favor selecciona tu programa académico.");
       return;
     }
 
     if (!formData.carne.trim()) {
-      setError('Por favor ingresa tu número de carné.');
+      setError("Por favor ingresa tu número de carné.");
       return;
     }
 
     if (formData.carne.length < 6) {
-      setError('El número de carné debe tener al menos 6 caracteres.');
+      setError("El número de carné debe tener al menos 6 caracteres.");
       return;
     }
 
     setIsLoading(true);
-
     try {
-      const updateSuccess = await updateProfile(formData.name, formData.program, formData.carne);
+      const updateSuccess = await updateProfile(
+        formData.name,
+        formData.programCode,
+        formData.carne,
+      );
       if (updateSuccess) {
-        setSuccess('Perfil actualizado exitosamente.');
+        setSuccess("Perfil actualizado exitosamente.");
         setTimeout(() => {
           onClose();
-          setSuccess('');
-        }, 1500);
+          setSuccess("");
+        }, 1200);
       } else {
-        setError('Este número de carné ya está en uso por otro usuario.');
+        setError("Este número de carné ya está en uso por otro usuario.");
       }
     } catch (err) {
-      setError('Ocurrió un error inesperado. Por favor intenta de nuevo.');
+      setError("Ocurrió un error inesperado. Por favor intenta de nuevo.");
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleClose = () => {
-    setFormData({
-      name: user?.name || '',
-      program: user?.program || '',
-      carne: user?.carne || ''
-    });
-    setError('');
-    setSuccess('');
     onClose();
   };
+
+  if (!isOpen) {
+    return null;
+  }
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} title="Editar Perfil" size="sm">
       <form onSubmit={handleSubmit}>
-        {error && (
+        {(error || programsError) && (
           <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-md text-red-700 mb-4">
             <AlertCircle size={16} />
-            <span className="text-sm">{error}</span>
+            <span className="text-sm">{error || programsError}</span>
           </div>
         )}
 
@@ -128,7 +126,7 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
             Nombre Completo
           </label>
           <div className="relative">
-            <User size={18} className="absolute left-3 top-3 text-gray-400" />
+            <UserIcon size={18} className="absolute left-3 top-3 text-gray-400" />
             <input
               type="text"
               name="name"
@@ -166,16 +164,19 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
           <div className="relative">
             <BookOpen size={18} className="absolute left-3 top-3 text-gray-400" />
             <select
-              name="program"
-              value={formData.program}
+              name="programCode"
+              value={formData.programCode}
               onChange={handleInputChange}
               className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white"
               required
+              disabled={isLoadingPrograms}
             >
-              <option value="">Selecciona tu programa</option>
+              <option value="" disabled>
+                {isLoadingPrograms ? "Cargando programas..." : "Selecciona tu programa"}
+              </option>
               {programs.map((program) => (
-                <option key={program} value={program}>
-                  {program}
+                <option key={program.code} value={program.code}>
+                  {program.name}
                 </option>
               ))}
             </select>
@@ -183,19 +184,11 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
         </div>
 
         <div className="flex justify-end gap-3">
-          <Button 
-            type="button" 
-            onClick={handleClose} 
-            variant="secondary"
-            disabled={isLoading}
-          >
+          <Button type="button" onClick={handleClose} variant="secondary" disabled={isLoading}>
             Cancelar
           </Button>
-          <Button 
-            type="submit"
-            disabled={isLoading || success !== ''}
-          >
-            {isLoading ? 'Guardando...' : 'Guardar Cambios'}
+          <Button type="submit" disabled={isLoading || isLoadingPrograms}>
+            {isLoading ? "Guardando..." : "Guardar Cambios"}
           </Button>
         </div>
       </form>

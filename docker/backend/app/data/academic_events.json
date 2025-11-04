@@ -1,0 +1,22 @@
+[
+  {
+    "date": "2024-10-06",
+    "name": "Inscripción suficiencia",
+    "type": "warning"
+  },
+  {
+    "date": "2024-11-21",
+    "name": "Semana 16",
+    "type": "info"
+  },
+  {
+    "date": "2024-12-11",
+    "name": "Entrega de actas",
+    "type": "danger"
+  },
+  {
+    "date": "2024-12-15",
+    "name": "Matrícula V-2025",
+    "type": "info"
+  }
+]

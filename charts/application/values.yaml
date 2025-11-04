@@ -1,0 +1,10 @@
+config:
+  docker_registry: tonybarr16
+  frontend:
+    replicas: 1
+    name: frontend
+    image: frontend
+  frontendnodeport:
+    port: 80
+    targetPort: 80
+    nodePort: 30080
